@@ -3,6 +3,7 @@
 <%
 
     Connection connection = null;
+    String num = request.getParameter("num");
 
     try{
         String url = "jdbc:mysql://localhost:3306/user";
@@ -46,7 +47,10 @@
         <tr>
             <td><%=rs.getString("category")%></td>
             <td><%=rs.getString("writer")%></td>
-            <td><%=rs.getString("title")%></td>
+            <td>
+                <a href="boardView.jsp?num=<%=num%>>"><%=rs.getString("title")%>
+                </a>
+            </td>
             <td><%=rs.getInt("hit")%></td>
             <td><%=rs.getDate("create_date")%></td>
             <td><%=rs.getDate("mod_date")%></td>
@@ -62,5 +66,7 @@
             }
     %>
     </table>
+
+
 </body>
 </html>
