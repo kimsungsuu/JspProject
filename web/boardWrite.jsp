@@ -36,8 +36,9 @@
     <table>
         <tr>
             <td>
+            <%--name을 기입해줘야 값이 등록 된다.--%>
                 <label>카테고리</label>
-                <select>
+                <select id="category" name="category">
                     <option value="Java">Java</option>
                     <option value="Javascript">Javascript</option>
                     <option value="Database">Database</option>
@@ -69,12 +70,10 @@
             </td>
         </tr>
     </table>
-</form>
 
-<footer>
-    <input type="submit" value="저장" onclick="writeCheck()">
+    <input type="submit" value="저장" onclick="writeCheck()" >
     <input type="button" onclick="history.back()" value="취소">
-</footer>
 
+</form>
 </body>
 </html>

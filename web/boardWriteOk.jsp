@@ -6,6 +6,13 @@
     String username = "root";
     String password = "pw1234";
 
+    // pull write.jsp parameter
+    String title = request.getParameter("title");
+    String writer = request.getParameter("writer");
+    String text = request.getParameter("text");
+    String category = request.getParameter("category");
+    String pass = request.getParameter("password");
+
     Connection connection = null;
 
     try{
@@ -13,18 +20,29 @@
         connection = DriverManager.getConnection(url, username, password);
         System.out.println("connection success : " + connection);
 
-        String sql = "Insert into board_tb(category, title, writer, password, text) values(?,?,?,?,?)";
+        String sql = "Insert into board_tb(category, title, writer, password, text, create_date, mod_date) values(?,?,?,?,?,now(),now())";
         PreparedStatement pstmt;
         pstmt = connection.prepareStatement(sql);
 
-        pstmt.setString(1,"category");
-        pstmt.setString(2,"title");
-        pstmt.setString(3,"writer");
-        pstmt.setString(4,"password");
-        pstmt.setString(5,"text");
+        pstmt.setString(1, category);
+        pstmt.setString(2, title);
+        pstmt.setString(3, writer);
+        pstmt.setString(4, pass);
+        pstmt.setString(5, text);
 
-    }catch (Exception e){
-        e.printStackTrace();
+        //pstmt 실행 및 종료 connection 종료
+        pstmt.executeUpdate();
+        pstmt.close();
+        connection.close();
+
+        //SQLException
+    }catch (SQLException e){
+        System.out.println("error : " + e.toString() );
     }
-
 %>
+
+<%--저장완료 알림창 + boardList로 화면 이동--%>
+<script type="text/javascript">
+    self.window.alert("저장 완료");
+    location.href="boardList.jsp";
+</script>

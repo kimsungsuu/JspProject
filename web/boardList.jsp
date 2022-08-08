@@ -66,7 +66,7 @@
     </table>
 
     <footer>
-        <input type = " button " onclick = " location.href = 'boardWrite.jsp' " value="글쓰기">
+        <input type = "button" onclick="location.href = 'boardWrite.jsp'" value="글쓰기">
     </footer>
 
 </body>
