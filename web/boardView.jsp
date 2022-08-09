@@ -63,5 +63,9 @@ try{
             }
         %>
     </table>
+
+    <input type="button" value="수정" onclick="location.href='boardUpdate.jsp'">
+    <input type="button" value="삭제">
+    <input type="button" value="목록" onclick="location.href='boardList.jsp'">
 </body>
 </html>
