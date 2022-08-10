@@ -12,8 +12,8 @@
         connection = DriverManager.getConnection(url,username,password);
         System.out.println("connect success");
 
-    }catch (Exception e){
-        e.printStackTrace();
+    }catch (SQLException e){
+        System.out.println("error : " + e.toString());
     }
 
     String sql = "select * from board_tb";

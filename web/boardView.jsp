@@ -20,8 +20,7 @@ try{
     e.printStackTrace();
     }
 
-    //TODO : 1) mySql syntax 에러 발생
-    String sql = "select category, title, writer, text from board_tb where num="+num;
+    String sql = "select num, category, title, writer, text from board_tb where num="+num;
     PreparedStatement pstmt = connection.prepareStatement(sql);
     ResultSet rs = pstmt.executeQuery();
 %>
@@ -53,19 +52,20 @@ try{
                 <textarea name="text" cols="30" rows="10"><%=rs.getString("text")%></textarea>
             </td>
         </tr>
-        <%}
-            } catch (Exception e){
-                    e.printStackTrace();
-            } finally {
-                if(rs != null) rs.close();
-                if(pstmt != null) pstmt.close();
-                if(connection != null) connection.close();
-            }
-        %>
     </table>
 
-    <input type="button" value="수정" onclick="location.href='boardUpdate.jsp'">
+    <input type="button" value="수정" onclick="location.href='boardUpdate.jsp?num=<%=rs.getString("num")%>'">
     <input type="button" value="삭제">
     <input type="button" value="목록" onclick="location.href='boardList.jsp'">
+
+        <%
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            rs.close();
+            pstmt.close();
+            connection.close();
+        %>
 </body>
 </html>

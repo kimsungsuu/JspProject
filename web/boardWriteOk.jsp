@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*"%>
+<% request.setCharacterEncoding("UTF-8"); //한글이 깨질 경우 %>
 
 <%
     String url = "jdbc:mysql://localhost:3306/user";
@@ -30,14 +31,14 @@
         pstmt.setString(4, pass);
         pstmt.setString(5, text);
 
-        //pstmt 실행 및 종료 connection 종료
+        //pstmt 실행 및 자동 종료
         pstmt.executeUpdate();
-        pstmt.close();
-        connection.close();
 
         //SQLException
     }catch (SQLException e){
         System.out.println("error : " + e.toString() );
+    } finally {
+        if(connection != null) connection.close();
     }
 %>
 
