@@ -20,8 +20,9 @@ try{
     e.printStackTrace();
     }
 
-    String sql = "select num, category, title, writer, text from board_tb where num="+num;
+    String sql = "select num, category, title, writer, text from board_tb where num=?";
     PreparedStatement pstmt = connection.prepareStatement(sql);
+    pstmt.setString(1,num);
     ResultSet rs = pstmt.executeQuery();
 %>
 <html>
