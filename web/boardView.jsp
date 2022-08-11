@@ -56,7 +56,7 @@ try{
     </table>
 
     <input type="button" value="수정" onclick="location.href='boardUpdate.jsp?num=<%=rs.getString("num")%>'">
-    <input type="button" value="삭제">
+    <input type="button" value="삭제" onclick="location.href=''">
     <input type="button" value="목록" onclick="location.href='boardList.jsp'">
 
         <%

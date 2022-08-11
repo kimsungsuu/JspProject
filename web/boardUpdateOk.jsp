@@ -9,7 +9,9 @@
 
     Connection connection = null;
 
+    //local variables는 초기 값을 선언해줘야 한다.(컴파일 시 자동으로 값을 넣어주기 때문에 오류가 발생한다.)
     String verrificationPass = null;
+
     String num = request.getParameter("num");
     String category = request.getParameter("category");
     String pass = request.getParameter("password");
@@ -26,13 +28,8 @@
         System.out.println(e.toString());
     }
 
-//    TODO : pstmt에 sql쿼리 두개를 어떻게 담을 수 있을까
-//    TODO : 비밀번호와 쿼리스트링으로 넘어온 비밀번호가 같은지 검사
-//    TODO : 비밀번호 검증을 어떻게 구현할 것인가?
-//    if문으로 setString을 모두 담아주고 db에 있는 password 값과 쿼리스트링으로 넘어온 password 값을 비교해서
-//    맞다면 수정된 값을 db에 넘겨주고 그렇지 않다면 alert 창을 뜨게 해준다.
-//    password를 db에서 찾기 위해 select 문을 사용해준다
-
+    //비밀번호 검증 로직
+    //if-else 문으로 검증 성공시와 실패시를 각각 따로 선언한다.
     String sql = "select password from board_tb where num = ?";
 
     try {
