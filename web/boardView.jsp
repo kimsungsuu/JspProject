@@ -20,7 +20,7 @@ try{
     e.printStackTrace();
     }
 
-    String sql = "select num, category, title, writer, text from board_tb where num=?";
+    String sql = "select category, title, writer, text from board_tb where num=?";
     PreparedStatement pstmt = connection.prepareStatement(sql);
     pstmt.setString(1,num);
     ResultSet rs = pstmt.executeQuery();
@@ -55,8 +55,9 @@ try{
         </tr>
     </table>
 
-    <input type="button" value="수정" onclick="location.href='boardUpdate.jsp?num=<%=rs.getString("num")%>'">
-    <input type="button" value="삭제" onclick="location.href=''">
+    <%--num 쿼리스트링 값을 가져옴--%>
+    <input type="button" value="수정" onclick="location.href='boardUpdate.jsp?num=<%=num%>'">
+    <input type="button" value="삭제" onclick="location.href='boardDelete.jsp?num=<%=num%>'">
     <input type="button" value="목록" onclick="location.href='boardList.jsp'">
 
         <%

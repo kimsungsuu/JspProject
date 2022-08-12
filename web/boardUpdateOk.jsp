@@ -68,6 +68,7 @@
             rs.close();
             connection.close();
 %>
+        <%--script문에서도 자바 사용 가능--%>
         <script type="text/javascript">
             self.window.alert("수정완료!");
             location.href='boardView.jsp?num=<%=num%>';
