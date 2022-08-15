@@ -7,7 +7,9 @@
     String username = "root";
     String password = "pw1234";
 
-    int cnt = 0;
+    int pageSize = 10;
+
+    String pageNum = request.getParameter("");
 
     try{
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -19,20 +21,9 @@
     }
 
     String sql = "select * from board_tb";
-    String sqlCount = "select count(num) AS countNum from board_tb";
 
     PreparedStatement pstmt = connection.prepareStatement(sql);
     ResultSet rs = pstmt.executeQuery();
-
-    PreparedStatement pstmtCount = connection.prepareStatement(sqlCount);
-    ResultSet rsCount = pstmtCount.executeQuery();
-
-    //게시글 총 수를 cnt에 담아준다. 별칭을 사용하여 게시글 수를 가져온다.
-    while(rsCount.next()){
-        cnt = rsCount.getInt("countNum");
-    }
-
-    System.out.println("cnt : " + cnt);
 
 %>
 
