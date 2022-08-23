@@ -7,6 +7,16 @@
     String username = "root";
     String password = "pw1234";
 
+    String pageNum = request.getParameter("pageNum");
+    if(pageNum == null){
+        pageNum = "1";
+    }
+
+    int currentPage = Integer.parseInt(pageNum);
+    int pageSize = 10;
+
+    int startRow = (currentPage - 1) * pageSize;
+
     try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection(url,username,password);
@@ -16,9 +26,13 @@
         System.out.println("error : " + e.toString());
     }
 
-    String sql = "select * from board_tb";
+    String sql = "select * from board_tb order by num desc limit ?,?";
 
     PreparedStatement pstmt = connection.prepareStatement(sql);
+
+    pstmt.setInt(1,startRow);
+    pstmt.setInt(2,pageSize);
+
     ResultSet rs = pstmt.executeQuery();
 
 %>
