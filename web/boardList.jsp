@@ -7,6 +7,8 @@
     String username = "root";
     String password = "pw1234";
 
+    String boardSearch = request.getParameter("boardSearch");
+
     int cnt = 0;
 
     //startRow 로직
@@ -56,11 +58,33 @@
 </head>
 <body>
 <h1>connect test boardList</h1>
+
+<%--검색 폼 로직--%>
+    <div class = "search">
+        <form action="boardSearch.jsp" method="post" name="searchForm">
+            <table>
+                <tr>
+                    <td>
+                        <select name="searchOption">
+                            <option value="title">제목</option>
+                            <option value="category">카테고리</option>
+                            <option value="writer">작성자</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="boardSearch" placeholder="검색어 입력">
+                        <input type="submit" value="검색">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
     <table>
         <tr>
             <td>카테고리</td>
-            <td>재목</td>
             <td>작성자</td>
+            <td>제목</td>
             <td>조회수</td>
             <td>작성일자</td>
             <td>수정일지</td>
@@ -89,6 +113,7 @@
                   System.out.println( "Exception : " + e );
                 } finally {
                     if( rs != null ) rs.close();
+                    if( rsCount != null) rsCount.close();
                     if( pstmtShow != null ) pstmtShow.close();
                     if( pstmtCount != null) pstmtCount.close();
                     if( connection != null ) connection.close();
@@ -141,7 +166,10 @@
         }
     %>
 
-<%--TODO : 페이징 구현--%>
+<%--TODO : 검색 기능 추가--%>
+<%--TODO : 생성된 날짜를 기준으로 게시글 출력하는 기능 추가--%>
+<%--TODO : 댓글 기능 추가--%>
+<%--TODO : login 기능 추가--%>
 
 </body>
 </html>
