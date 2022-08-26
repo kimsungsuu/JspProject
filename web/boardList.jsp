@@ -7,20 +7,20 @@
     String username = "root";
     String password = "pw1234";
 
-    //총 게시글 수
     int cnt = 0;
 
+    //startRow 로직
     String pageNum = request.getParameter("pageNum");
-    if(pageNum == null){
-        pageNum = "1";
+
+    if(pageNum==null){
+        pageNum="1";
     }
 
     int currentPage = Integer.parseInt(pageNum);
+
     int pageSize = 10;
 
-    System.out.println("currentPage = " + currentPage);
-
-    int startRow = (currentPage - 1) * pageSize + 1;
+    int startRow = (currentPage - 1)*pageSize + 1;
 
     try{
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,30 +31,22 @@
         System.out.println("error : " + e.toString());
     }
 
-    String sql = "select * from board_tb order by num desc limit ?,?";
+    //게시글 출력 및 cnt 로직
+    String sqlShow = "select * from board_tb order by num desc limit ?,?";
+    String sqlCount = "select count(num) as cnt from board_tb";
 
-    String sqlCount = "select count(num) AS cnt from board_tb";
+    PreparedStatement pstmtShow = connection.prepareStatement(sqlShow);
+    PreparedStatement pstmtCount = connection.prepareStatement(sqlCount);
 
-    PreparedStatement pstmt = connection.prepareStatement(sql);
-    PreparedStatement pstmtCnt = connection.prepareStatement(sqlCount);
+    pstmtShow.setInt(1, startRow);
+    pstmtShow.setInt(2, pageSize);
 
-    //TODO : pageNum을 쿼리스트링 값으로 어떻게 받아올 것인가?
-    //pageNum 값을 받아올 수 있다면 currentPage를 할당할 수 있다. 즉, startRow를 설정할 수 있다.
+    ResultSet rs = pstmtShow.executeQuery();
+    ResultSet rsCount = pstmtCount.executeQuery();
 
-    //만약 block으로 1, 2, 3, 4... 의 페이지 번호를 부여했을 때 그 페이지 번호가 pageNum이 될 수 있다면 문제가 해결될 수 있지 않을까?
-
-
-    pstmt.setInt(1,startRow);
-    pstmt.setInt(2,pageSize);
-
-    ResultSet rs = pstmt.executeQuery();
-    ResultSet rsCnt = pstmtCnt.executeQuery();
-
-    while (rsCnt.next()){
-        cnt = rsCnt.getInt("cnt");
+    while(rsCount.next()){
+        cnt = rsCount.getInt("cnt");
     }
-
-    //TODO : 하단에 글페이지 번호 + prev + next 구현
 
 %>
 
@@ -97,7 +89,8 @@
                   System.out.println( "Exception : " + e );
                 } finally {
                     if( rs != null ) rs.close();
-                    if( pstmt != null ) pstmt.close();
+                    if( pstmtShow != null ) pstmtShow.close();
+                    if( pstmtCount != null) pstmtCount.close();
                     if( connection != null ) connection.close();
                 }
         %>
@@ -107,23 +100,44 @@
         <input type = "button" onclick="location.href = 'boardWrite.jsp'" value="글쓰기">
     </footer>
 
-<%--    pageCount = 페이지 번호 수 지정--%>
-<%--    cnt%pageSize==0?0:1는 여분의 게시글 수가 존재할 시 마지막 페이지 번호에 추가--%>
-<%--    pageBlock = 한번에 보여질 페이지 번호 수--%>
-<%--    startBlock = currentPage에 따라 1,11,21과 같이 보여지는 startPage가 달라짐--%>
-<%--    endPage = 게시글 수에 따른 마지막 페이지 번호--%>
+<%--    pageBlock 로직--%>
     <%
-        if(cnt>0){
-            int pageCount = cnt/pageSize + (cnt%pageSize==0?0:1);
+        if(cnt > 0){
+            int pageCount = cnt/pageSize+(cnt%pageSize==0?0:1);
 
             int pageBlock = 10;
 
             int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
 
             int endPage = startPage + (pageBlock-1);
+
             if(endPage > pageCount){
                 endPage = pageCount;
             }
+    %>
+
+    <%
+        if(startPage > pageBlock){
+    %>
+            <a href="boardList.jsp?pageNum=<%=startPage-pageBlock%>">Prev</a>
+    <%
+        }
+    %>
+
+    <%
+        for(int i = startPage; i<=endPage; i++){
+    %>
+            <a href="boardList.jsp?pageNum=<%=i%>"><%=i%></a>
+    <%
+        }
+    %>
+
+    <%
+        if(endPage > pageBlock){
+    %>
+            <a href="boardList.jsp?pageNum=<%=startPage+pageBlock%>">Next</a>
+    <%
+        }
         }
     %>
 
