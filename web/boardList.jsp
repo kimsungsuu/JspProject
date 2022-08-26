@@ -20,7 +20,7 @@
 
     int pageSize = 10;
 
-    int startRow = (currentPage - 1)*pageSize + 1;
+    int startRow = (currentPage - 1) * pageSize + 1;
 
     try{
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -103,7 +103,7 @@
 <%--    pageBlock 로직--%>
     <%
         if(cnt > 0){
-            int pageCount = cnt/pageSize+(cnt%pageSize==0?0:1);
+            int pageCount = cnt/pageSize + (cnt%pageSize==0?0:1);
 
             int pageBlock = 10;
 
@@ -125,7 +125,7 @@
     %>
 
     <%
-        for(int i = startPage; i<=endPage; i++){
+        for(int i = startPage; i <= endPage; i++){
     %>
             <a href="boardList.jsp?pageNum=<%=i%>"><%=i%></a>
     <%
@@ -133,7 +133,7 @@
     %>
 
     <%
-        if(endPage > pageBlock){
+        if(endPage < pageCount){
     %>
             <a href="boardList.jsp?pageNum=<%=startPage+pageBlock%>">Next</a>
     <%
