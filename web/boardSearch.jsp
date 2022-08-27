@@ -14,6 +14,7 @@
     String searchOption = request.getParameter("searchOption");
     String boardSearch = request.getParameter("boardSearch");
 
+    int pageSize = 10;
 
     String pageNum = request.getParameter("pageNum");
     if (pageNum == null) {
@@ -21,6 +22,8 @@
     }
 
     int currentPage = Integer.parseInt(pageNum);
+
+    int startRow = (currentPage - 1) * pageSize + 1;
 
 
     try{
