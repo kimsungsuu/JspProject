@@ -71,6 +71,7 @@
             }
         }catch (SQLException e){
             System.out.println("boardSearchError" + e.toString());
+
         }finally {
             if(rs != null) rs.close();
             if(pstmtSearch != null) pstmtSearch.close();
