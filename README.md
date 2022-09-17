@@ -39,4 +39,13 @@ pstmt.setString(1,"%" +ara3+ "%");
    - input type에서 check는 중복 선택이 가능하고 radio는 하나의 선택만 가능하다. 또한 태그 내에 value는 파라미터 값으로 넘겨주는 값이다. value를 직접 지정해줄 수도 있고
    사용자가 입력하는 값이 value로 지정하고 싶다면 따로 value를 선언하지 않으면 된다.
    
-   - 
+   2022.9.17
+   - 회원가입, 게시판, 투표 프로그램 기능이 다 있는 홈페이지 공부
+    - index.jsp(화면 프레임으로 분리해서 출력), head.jsp, main.jsp, copy.jsp...
+   - EL(Expression Language) 표현언어 공부
+    - 내장 객체, page, session, request, application, 
+    - Scope, sessionScope, pageScope, requestScope, applicationScope
+    - EL 연산자, lt, gt, le, ge, eq, nq
+    - context 의미 : 글의 전체적인 정보를 담고 있는.. applicationContext : application의 전체적인 정보를 담고 있는 객체
+   - frameset tag, frame tag, target 속성
+    - blank, top, self, parent
