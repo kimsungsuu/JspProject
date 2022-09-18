@@ -56,5 +56,45 @@ pstmt.setString(1,"%" +ara3+ "%");
     - name="id" beans에 담긴 siteName 변수 값을 가져올 때 -> ${id.siteName};
     - 사용자가 직접 만든 메소드(컴포넌트)를 EL로 직접 사용할 수 있다.
       - 따로 환경설정을 해줘야 한다.(JSp 교재 참고)
-    -
+  
+    - JSTL(JSP Standard Tag Library) 자바 표준 태그 라이브러리
+    - JSTL은 일반적인 반복 및 조건, 포매팅 작업, XML 문서, 국제화 태그 및 SQL 태그 조작을 위한 태그에 대해 지원한다.
+    - 또한 기존 사용자 정의 태그를 통합하기 위한 프레임 워크를 제공한다고 한다.
+    - JSTL에서 제공하는 태그 5가지 core, formatting, sql, xml, functions
+    - core 태그 : 일반적인 변수 선언, 제어문, 일반적인 로직 등의 기능을 제공
+    - core 태그를 사용하기 위해 지시자를 선언해야함 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    - <c:set var="str3" value="JspStudy" scope="page" />, <c:out value="${str3}" default="기본 메세지"/> 
+    - 위 코드에서 default는 str3 값이 null일 경우 반환.
+    - 스크립트 릿에서 선언된 변수는 <c:out value="<%=str3%>" default="기본 메세지" />와 같이 반환해준다.
+    - <c:remove var="str4"/> remove 속성으로 변수를 제거할 수도 있다. 
+    - core 태그로 생성된 변수는 core 태그로만 반환할 수 있다. 스크립트릿으로 반환하는 방법은 scope 방식으로 반환하는 것이다
+      - ex) <%String s = (String)pageContext.getAttribute("id");%>
+      - pageContext 객체는 반환형이 객체이므로 String으로 형변환 해준다.
+      - <c:if test = "${param.id != null}">에서 test는 c:if 에서 붙는 필수 속성 값.
+      - </c:if>와 같이 닫아준다.
+      - <c:choose> 
+      - <c:when test = "${param.color = 'yellow'}">
+      - <c:set var = "c" value = "노란색"/>
+      - </c:when>
+      - <c:otherwise>
+      - <c:set var = "c" value ="블랙"/>
+      - </c:otherwise>
+      - </c:choose>
+    - <c:forEach>, <c:forTokens>
+      - String str[] = {"수박", "참외", "딸기", "바나나"};
+      - <c:set var="arr" value="<%=str%>"/>
+      - forEach 태그는 List, 배열을 순서대로 반복해서 처리할 수 있는 태그이다.
+      - <c:forEach var="i" items="${arr}" begin = "0" step = "1" end = "3"> ${i} </c:forEach>
+      - forTokens 태그는 subString 처럼 특정 구분자로 분리하여 반환하기 위한 태그
+      - String s = "JSP, Servlet; Java, DB"
+      - <c:forTokens var="st" items="${s}" delims=", ;"> ${s} </c:forTokens>
+      - ,와 ;로 분리해서 출력
+   - <c:input>, <c:param>, <c:url>
+      - include 액션 태그와 유사한 기능
+      - <c:input url = "주소"> <c:param name ="id" value="Hi" /> </c:input>
+      - 위 선언에서 <c:param>은 요청 url에 요청할 변수명과 값을 의미
+      - <c:url>태그는 주소 값을 변수로 선언할 때 사용
+      - <c:url var ="url1" value="주소"/> <c:param var="q" value ="plusParam"/> </c:url>
+      - 위와 같이 선언하면 주소값 파라미터인 q를 주소에 추가해준다. (출력예시) 주소/?q=plusParam)
+  
   
