@@ -49,3 +49,12 @@ pstmt.setString(1,"%" +ara3+ "%");
     - context 의미 : 글의 전체적인 정보를 담고 있는.. applicationContext : application의 전체적인 정보를 담고 있는 객체
    - frameset tag, frame tag, target 속성
     - blank, top, self, parent
+    
+    2022.9.18
+    - form에서 넘어온 파라미터 값을 EL 가져올 때 -> ${param.id}
+    - JSP 내장함수 객체 속성에 값을 넣어준걸 반환할 때 (ex) request.setAttribute("id", "id");) -> ${id}
+    - name="id" beans에 담긴 siteName 변수 값을 가져올 때 -> ${id.siteName};
+    - 사용자가 직접 만든 메소드(컴포넌트)를 EL로 직접 사용할 수 있다.
+      - 따로 환경설정을 해줘야 한다.(JSp 교재 참고)
+    -
+  
