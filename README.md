@@ -97,4 +97,7 @@ pstmt.setString(1,"%" +ara3+ "%");
       - <c:url var ="url1" value="주소"/> <c:param var="q" value ="plusParam"/> </c:url>
       - 위와 같이 선언하면 주소값 파라미터인 q를 주소에 추가해준다. (출력예시) 주소/?q=plusParam)
   
+  2022.9.19
+  TIL을 개발 블로그에 적기 시작했습니다. 
+  오늘 공부한 자료의 링크입니다 : https://hardkeepgoing.tistory.com/158
   
