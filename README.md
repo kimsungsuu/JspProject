@@ -101,3 +101,6 @@ pstmt.setString(1,"%" +ara3+ "%");
   TIL을 개발 블로그에 적기 시작했습니다. 
   오늘 공부한 자료의 링크입니다 : https://hardkeepgoing.tistory.com/158
   
+  2022.9.20
+  오늘의 TIL입니다. ^^ : https://hardkeepgoing.tistory.com/159
+  
