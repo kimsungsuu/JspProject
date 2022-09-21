@@ -1,5 +1,4 @@
-# JspProject
-New
+# JSPProject
 jsp -> javabean -> db 
 
 2022.9.14
