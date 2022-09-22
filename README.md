@@ -103,3 +103,5 @@ pstmt.setString(1,"%" +ara3+ "%");
   2022.9.20
   오늘의 TIL입니다. ^^ : https://hardkeepgoing.tistory.com/159
   
+  2022.9.22
+  오늘의 TIL입니다. ^^ : https://hardkeepgoing.tistory.com/160
