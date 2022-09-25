@@ -108,3 +108,9 @@ pstmt.setString(1,"%" +ara3+ "%");
   
   2022.9.24
   오늘의 TIL 입니다. ^^ : https://hardkeepgoing.tistory.com/161
+  
+  2022.9.25
+  오늘의 TIL 입니다. ^^ :</br> 
+  절대경로와 상대경로에 관한 내용입니다. : https://hardkeepgoing.tistory.com/162
+  </br>
+  JSP의 내장 객체인 response에 관한 내용입니다. : https://hardkeepgoing.tistory.com/163
