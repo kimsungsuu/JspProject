@@ -123,3 +123,7 @@ pstmt.setString(1,"%" +ara3+ "%");
   </br>
   컴퓨터 컴파일 흐름을 정리해보았습니다 : https://hardkeepgoing.tistory.com/166
   
+  2022.9.27
+  오늘의 TIL 입니다. ^^ </br>
+  모듈과 모듈화를 정리해봤습니다 : https://hardkeepgoing.tistory.com/167
+  
