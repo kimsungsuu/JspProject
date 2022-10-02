@@ -135,3 +135,7 @@ pstmt.setString(1,"%" +ara3+ "%");
   오늘의 TIL 입니다. </br>
   Http Method의 Get, Post를 정리해봤습니다 : https://hardkeepgoing.tistory.com/169
   
+  2022.10.2
+  오늘의 TIL 입니다. </br>
+  try/catch/finally에 대해 정리해봤습니다. : https://hardkeepgoing.tistory.com/170
+  
